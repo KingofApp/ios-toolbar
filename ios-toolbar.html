@@ -8,6 +8,41 @@ This code may only be used under the MIT license.
 <link rel="import" href="../ios-styles/ios-styles.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
+<!--
+`ios-toolbar` is a horizontal bar containing items that can be used for label,
+navigation, search and actions. The items place inside the `ios-toolbar` are
+projected into a `class="horizontal center layout"` container inside of
+`ios-toolbar`'s Shadow DOM. You can use flex attributes to control the items'
+sizing.
+
+Example:
+
+    <ios-toolbar>
+      <ios-icon-button icon="menu" on-tap="menuAction"></ios-icon-button>
+      <div class="title">Title</div>
+      <ios-icon-button icon="more-vert" on-tap="moreAction"></ios-icon-button>
+    </ios-toolbar>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--ios-toolbar-background` | Toolbar background color     | `#f7f7f9`
+`--ios-toolbar-color`      | Toolbar foreground color     | `--text-primary-color`
+`--ios-toolbar-height`     | Custom height for toolbar    | `56px`
+`--ios-toolbar-sm-height`  | Custom height for small screen toolbar | `48px`
+`--ios-toolbar`            | Mixin applied to the toolbar | `{}`
+
+### Accessibility
+
+`<ios-toolbar>` has `role="toolbar"` by default. Any elements with the class
+`title` will be used as the label of the toolbar via `aria-labelledby`.
+
+@demo demo/index.html
+-->
+
 <dom-module id="ios-toolbar">
   <template>
     <style>
