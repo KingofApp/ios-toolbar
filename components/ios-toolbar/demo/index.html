@@ -1,0 +1,53 @@
+<!--
+@license
+Copyright (c) 2015 Team King of App. All rights reserved.
+This code may only be used under the MIT license.
+-->
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+  <title>ios-toolbar demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../ios-icon-button/ios-icon-button.html">
+  <link rel="import" href="../../iron-icons/iron-icons.html">
+  <link rel="import" href="../ios-toolbar.html">
+
+  <style is="custom-style">
+    ios-toolbar + ios-toolbar {
+      margin-top: 20px;
+    }
+
+    ios-toolbar.gold {
+      --ios-toolbar-background: gold;
+    }
+  </style>
+</head>
+<body unresolved>
+  <ios-toolbar>
+    <ios-icon-button icon="menu"></ios-icon-button>
+    <span class="title">Toolbar</span>
+  </ios-toolbar>
+
+  <ios-toolbar>
+    <a href="#">
+      <ios-icon-button icon="chevron-left"></ios-icon-button>
+      <span>Back</span>
+    </a>
+    <span class="title">Toolbar</span>
+    <ios-icon-button icon="add">+</ios-icon-button>
+  </ios-toolbar>
+
+  <ios-toolbar class="gold">
+    <ios-icon-button icon="menu"></ios-icon-button>
+    <span class="title">Toolbar: custom background color</span>
+    <ios-icon-button icon="add">+</ios-icon-button>
+  </ios-toolbar>
+</body>
+</html>

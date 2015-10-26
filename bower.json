@@ -1,0 +1,32 @@
+{
+  "name": "ios-toolbar",
+  "version": "0.1.2",
+  "description": "iOS design toolbar that is easily customizable",
+  "authors": [
+    "Abdón Rodríguez Davila <thepeer@kingofapp.es>"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "ios",
+    "toolbar",
+    "layout"
+  ],
+  "main": "ios-toolbar.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KingofApp/ios-toolbar.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "ios-styles": "KingofApp/ios-styles#^0.2.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0"
+  },
+  "devDependencies": {
+    "ios-icon-button": "KingofApp/ios-icon-button#^0.1.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

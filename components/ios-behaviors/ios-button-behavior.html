@@ -1,0 +1,30 @@
+<!--
+@license
+Copyright (c) 2015 Team King of App. All rights reserved.
+This code may only be used under the MIT license.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-behaviors/iron-button-state.html">
+
+<script>
+  /**
+   * The `IosButtonBehavior` implements shared behavior for iOS design buttons
+   * such as [ios-button](ios-button).
+   *
+   * @polymerBehavior Polymer.IosButtonBehavior
+   */
+  Polymer.IosButtonBehaviorImpl = {
+    hostAttributes: {
+      role: 'button',
+      tabindex: '0'
+    }
+  };
+
+  /** @polymerBehavior */
+  Polymer.IosButtonBehavior = [
+    Polymer.IronButtonState,
+    Polymer.IronControlState,
+    Polymer.IosButtonBehaviorImpl
+  ];
+</script>

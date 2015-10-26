@@ -1,0 +1,32 @@
+{
+  "name": "ios-behaviors",
+  "version": "0.1.1",
+  "description": "Common behaviors across the iOS elements",
+  "authors": [
+    "Abdón Rodríguez Davila <thepeer@kingofapp.es>"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "ios",
+    "behaviors",
+    "behavior"
+  ],
+  "main": [
+    "ios-button-behavior.html"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KingofApp/ios-behaviors.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "iron-behaviors": "PolymerElements/iron-behaviors#^1.0.0"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}

@@ -1,0 +1,134 @@
+<!--
+@license
+Copyright (c) 2015 Team King of App. All rights reserved.
+This code may only be used under the MIT license.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../ios-behaviors/ios-button-behavior.html">
+<link rel="import" href="../ios-styles/default-theme.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<!--
+`ios-icon-button` is a button with an image placed at the center.
+
+`ios-icon-button` includes a default icon set. Use `icon` to specify which icon
+from the icon set to use.
+
+    <ios-icon-button icon="menu"></ios-icon-button>
+
+See [`iron-iconset`](#iron-iconset) for more information about how to use a
+custom icon set.
+
+Example:
+
+    <link href="path/to/iron-icons/iron-icons.html" rel="import">
+
+    <ios-icon-button icon="favorite"></ios-icon-button>
+    <ios-icon-button src="star.png"></ios-icon-button>
+
+### Styling
+
+Style the button with CSS as you would a normal DOM element. If you are using the icons
+provided by `iron-icons`, they will inherit the foreground color of the button.
+
+    /* make a red "favorite" button */
+    <ios-icon-button icon="favorite" style="color: red;"></ios-icon-button>
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--ios-icon-button-disabled-text` | The color of the disabled button | `--disabled-text-color`
+`--ios-icon-button` | Mixin for a button | `{}`
+`--ios-icon-button-disabled` | Mixin for a disabled button | `{}`
+
+@group iOS elements
+@element ios-icon-button
+@demo demo/index.html
+-->
+
+<dom-module id="ios-icon-button">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        padding: 8px;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+
+        width: 24px;
+
+        @apply(--ios-icon-button);
+      }
+
+      :host([disabled]) {
+        color: var(--ios-icon-button-disabled-text, --disabled-text-color);
+        pointer-events: none;
+        cursor: auto;
+
+        @apply(--ios-icon-button-disabled);
+      }
+
+      iron-icon {
+        --iron-icon-width: 100%;
+        --iron-icon-height: 100%;
+      }
+    </style>
+
+    <iron-icon id="icon" src="[[src]]" icon="[[icon]]" alt$="[[alt]]"></iron-icon>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ios-icon-button',
+
+      behaviors: [
+        Polymer.IosButtonBehavior
+      ],
+
+      properties: {
+        /**
+         * The URL of an image for the icon. If the src property is specified,
+         * the icon property should not be.
+         */
+        src: {
+          type: String
+        },
+
+        /**
+         * Specifies the icon name or index in the set of icons available in
+         * the icon's icon set. If the icon property is specified,
+         * the src property should not be.
+         */
+        icon: {
+          type: String
+        },
+
+        /**
+         * Specifies the alternate text for the button, for accessibility.
+         */
+        alt: {
+          type: String,
+          observer: "_altChanged"
+        }
+      },
+
+      _altChanged: function(newValue, oldValue) {
+        var label = this.getAttribute('aria-label');
+
+        // Don't stomp over a user-set aria-label.
+        if (!label || oldValue == label) {
+          this.setAttribute('aria-label', newValue);
+        }
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,44 @@
+{
+  "name": "ios-icon-button",
+  "version": "0.1.0",
+  "description": "iOS material design icon button",
+  "authors": [
+    "Abdón Rodríguez Davila <thepeer@kingofapp.es>"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "ios",
+    "button",
+    "icon",
+    "control"
+  ],
+  "main": "ios-icon-button.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KingofApp/ios-icon-button.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "ios-behaviors": "KingofApp/ios-behaviors#^0.1.0",
+    "ios-styles": "KingofApp/ios-styles#^0.2.0",
+    "iron-icon": "PolymerElements/iron-icon#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/KingofApp/ios-icon-button",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "75839a930819e71b8af7c9c39cb5751f397bbd3c"
+  },
+  "_source": "git://github.com/KingofApp/ios-icon-button.git",
+  "_target": "^0.1.0",
+  "_originalSource": "KingofApp/ios-icon-button"
+}

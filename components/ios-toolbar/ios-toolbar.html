@@ -1,0 +1,180 @@
+<!--
+@license
+Copyright (c) 2015 Team King of App. All rights reserved.
+This code may only be used under the MIT license.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../ios-styles/ios-styles.html">
+<link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<!--
+`ios-toolbar` is a horizontal bar containing items that can be used for label,
+navigation, search and actions. The items place inside the `ios-toolbar` are
+projected into a `class="horizontal center layout"` container inside of
+`ios-toolbar`'s Shadow DOM. You can use flex attributes to control the items'
+sizing.
+
+Example:
+
+    <ios-toolbar>
+      <ios-icon-button icon="menu" on-tap="menuAction"></ios-icon-button>
+      <div class="title">Title</div>
+      <ios-icon-button icon="more-vert" on-tap="moreAction"></ios-icon-button>
+    </ios-toolbar>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--ios-toolbar-background` | Toolbar background color     | `#f7f7f9`
+`--ios-toolbar-color`      | Toolbar foreground color     | `--text-primary-color`
+`--ios-toolbar-height`     | Custom height for toolbar    | `56px`
+`--ios-toolbar-sm-height`  | Custom height for small screen toolbar | `48px`
+`--ios-toolbar`            | Mixin applied to the toolbar | `{}`
+
+### Accessibility
+
+`<ios-toolbar>` has `role="toolbar"` by default. Any elements with the class
+`title` will be used as the label of the toolbar via `aria-labelledby`.
+
+@demo demo/index.html
+-->
+
+<dom-module id="ios-toolbar">
+  <template>
+    <style>
+      :host {
+        /* technical */
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+
+        /* size */
+        height: var(--ios-toolbar-height, 56px);
+
+        background: var(--ios-toolbar-background, #f7f7f9);
+        color: var(--ios-toolbar-color, --default-primary-color);
+
+        @apply(--ios-toolbar);
+      }
+
+      .toolbar-tools {
+        position: relative;
+        height: var(--ios-toolbar-height, 56px);
+        padding: 0 5px;
+        pointer-events: none;
+      }
+
+      /*
+       * TODO: Where should media query breakpoints live so they can be shared between elements?
+       */
+
+      @media (max-width: 639px) {
+        :host {
+          height: var(--ios-toolbar-sm-height, 48px);
+        }
+
+        .toolbar-tools {
+          height: var(--ios-toolbar-sm-height, 48px);
+        }
+      }
+
+      /*
+       * make elements (e.g. buttons) respond to mouse/touch events
+       *
+       * `.toolbar-tools` disables touch events so multiple toolbars can stack and not
+       * absorb events. All children must have pointer events re-enabled to work as
+       * expected.
+       */
+      .toolbar-tools > ::content > *:not([disabled]) {
+        pointer-events: auto;
+      }
+
+      .toolbar-tools > ::content .title {
+        @apply(--ios-font-title);
+        @apply(--layout-flex);
+
+        pointer-events: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: center;
+
+        color: var(--ios-toolbar-title-color, --primary-text-color);
+      }
+
+      .toolbar-tools > ::content a {
+        color: var(--ios-toolbar-color, --default-primary-color);
+        text-decoration: none;
+      }
+
+      .toolbar-tools > ::content a ios-icon-button {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    </style>
+
+    <div class="center horizontal layout toolbar-tools">
+      <content></content>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ios-toolbar',
+
+      hostAttributes: {
+        'role': 'toolbar'
+      },
+
+      attached: function() {
+        this._observer = this._observe(this);
+        this._updateAriaLabelledBy();
+      },
+
+      detached: function() {
+        if (this._observer) {
+          this._observer.disconnect();
+        }
+      },
+
+      _observe: function(node) {
+        var observer = new MutationObserver(function() {
+          this._updateAriaLabelledBy();
+        }.bind(this));
+        observer.observe(node, {
+          childList: true,
+          subtree: true
+        });
+        return observer;
+      },
+
+      _updateAriaLabelledBy: function() {
+        var labelledBy = [];
+        var contents = Polymer.dom(this.root).querySelectorAll('content');
+        for (var content, index = 0; content = contents[index]; index++) {
+          var nodes = Polymer.dom(content).getDistributedNodes();
+          for (var node, jndex = 0; node = nodes[jndex]; jndex++) {
+            if (node.classList && node.classList.contains('title')) {
+              if (node.id) {
+                labelledBy.push(node.id);
+              } else {
+                var id = 'ios-toolbar-label-' + Math.floor(Math.random() * 10000);
+                node.id = id;
+                labelledBy.push(id);
+              }
+            }
+          }
+        }
+        if (labelledBy.length > 0) {
+          this.setAttribute('aria-labelledby', labelledBy.join(' '));
+        }
+      }
+    });
+  </script>
+</dom-module>
